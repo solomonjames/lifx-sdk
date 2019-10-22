@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace KSolo\Lifx\Builders;
 
+use InvalidArgumentException;
 use KSolo\Lifx\Util\Validators;
 
 class Color
@@ -37,7 +38,7 @@ class Color
     /**
      * @param string $hexValue
      *
-     * @return \KSolo\Lifx\Color
+     * @return \KSolo\Lifx\Builders\Color
      */
     public function setHex(string $hexValue): self
     {
@@ -45,19 +46,19 @@ class Color
     }
 
     /**
-     * @param int $r
-     * @param int $g
-     * @param int $b
+     * @param int $red
+     * @param int $green
+     * @param int $blue
      *
-     * @return \KSolo\Lifx\Color
+     * @return \KSolo\Lifx\Builders\Color
      */
-    public function setRbg(int $r, int $g, int $b): self
+    public function setRbg(int $red, int $green, int $blue): self
     {
-        $this->validators->intInRange($r, 0, 255);
-        $this->validators->intInRange($g, 0, 255);
-        $this->validators->intInRange($b, 0, 255);
+        $this->validators->intInRange($red, 0, 255);
+        $this->validators->intInRange($green, 0, 255);
+        $this->validators->intInRange($blue, 0, 255);
 
-        $value = sprintf('%s:%s,%s,%s', self::SETTING_RGB, $r, $g, $b);
+        $value = sprintf('%s:%s,%s,%s', self::SETTING_RGB, $red, $green, $blue);
 
         return $this->appendSetting(self::SETTING_RGB, $value);
     }
@@ -65,7 +66,7 @@ class Color
     /**
      * @param float $level
      *
-     * @return \KSolo\Lifx\Color
+     * @return \KSolo\Lifx\Builders\Color
      */
     public function setBrightness(float $level): self
     {
@@ -79,7 +80,7 @@ class Color
     /**
      * @param float $level
      *
-     * @return \KSolo\Lifx\Color
+     * @return \KSolo\Lifx\Builders\Color
      */
     public function setSaturation(float $level): self
     {
@@ -93,7 +94,7 @@ class Color
     /**
      * @param int $value
      *
-     * @return \KSolo\Lifx\Color
+     * @return \KSolo\Lifx\Builders\Color
      */
     public function setHue(int $value): self
     {
@@ -109,7 +110,7 @@ class Color
     /**
      * @param int $value
      *
-     * @return \KSolo\Lifx\Color
+     * @return \KSolo\Lifx\Builders\Color
      */
     public function setKelvin(int $value): self
     {
@@ -123,14 +124,14 @@ class Color
     /**
      * @param string $value
      *
-     * @return \KSolo\Lifx\Color
+     * @return \KSolo\Lifx\Builders\Color
      */
     public function setColorName(string $value): self
     {
         $validColorNames = ['white', 'red', 'orange', 'yellow', 'cyan', 'green', 'blue', 'purple', 'pink'];
 
         if (! in_array($value, $validColorNames, true)) {
-            throw new \InvalidArgumentException('The color you supplied is not supported: %s', $value);
+            throw new InvalidArgumentException(sprintf('The color you supplied is not supported: %s', $value));
         }
 
         return $this->appendSetting(self::SETTING_NAME, $value);
@@ -140,7 +141,7 @@ class Color
      * @param string $key
      * @param string $value
      *
-     * @return \KSolo\Lifx\Color
+     * @return \KSolo\Lifx\Builders\Color
      */
     private function appendSetting(string $key, string $value): self
     {

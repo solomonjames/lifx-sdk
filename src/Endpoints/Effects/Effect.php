@@ -45,6 +45,6 @@ class Effect
     {
         $uri = sprintf('%s/effects/%s', $this->selector, $effectName);
 
-        return new Request('POST', $uri, [], json_encode($this->data));
+        return new Request('POST', $uri, [], json_encode($this->data) ?: '');
     }
 }

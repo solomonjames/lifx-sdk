@@ -34,7 +34,7 @@ class Lifx
     {
         $response = $this->client->send($request);
 
-        $results = Collection::make(json_decode((string) $response->getBody(), true));
+        $results = new Collection(json_decode((string) $response->getBody(), true));
 
         if ($request instanceof HydratesResults) {
             $results->mapInto($request->hydrator());

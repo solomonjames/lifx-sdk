@@ -137,6 +137,6 @@ class SetState implements CreatesRequest
     {
         $uri = sprintf('%s/state', $this->selector);
 
-        return new Request('PUT', $uri, [], json_encode($this->data));
+        return new Request('PUT', $uri, [], json_encode($this->data) ?: '');
     }
 }

@@ -89,7 +89,7 @@ class Light
      */
     public function color(): Color
     {
-        if (! $this->color) {
+        if ($this->color === null) {
             $this->color = new Color($this->data['color']);
         }
 
