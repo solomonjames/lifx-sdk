@@ -15,39 +15,14 @@ class SetState implements CreatesRequest
     private $selector;
 
     /**
-     * @var \KSolo\Lifx\Color
-     */
-    private $color;
-
-    /**
-     * @var float
-     */
-    private $brightness;
-
-    /**
-     * @var float
-     */
-    private $duration;
-
-    /**
      * @var \KSolo\Lifx\Util\Validators
      */
     private $validators;
 
     /**
-     * @var float
+     * @var array
      */
-    private $infrared;
-
-    /**
-     * @var bool
-     */
-    private $fastEnabled = false;
-
-    /**
-     * @var string
-     */
-    private $power;
+    private $data = [];
 
     /**
      * SetState constructor.
@@ -67,7 +42,7 @@ class SetState implements CreatesRequest
      */
     public function setColor(Color $color): self
     {
-        $this->color = $color;
+        $this->data['color'] = $color;
 
         return $this;
     }
@@ -81,7 +56,7 @@ class SetState implements CreatesRequest
     {
         $this->validators->floatInRange($brightness, 0.0, 1.0);
 
-        $this->brightness = $brightness;
+        $this->data['brightness'] = $brightness;
 
         return $this;
     }
@@ -96,7 +71,7 @@ class SetState implements CreatesRequest
         // 0-100 years
         $this->validators->floatInRange($duration, 0.0, 3155760000.0);
 
-        $this->duration = $duration;
+        $this->data['duration'] = $duration;
 
         return $this;
     }
@@ -110,7 +85,7 @@ class SetState implements CreatesRequest
     {
         $this->validators->floatInRange($infrared, 0.0, 1.0);
 
-        $this->infrared = $infrared;
+        $this->data['infrared'] = $infrared;
 
         return $this;
     }
@@ -122,7 +97,7 @@ class SetState implements CreatesRequest
      */
     public function setFast(bool $enabled = true): self
     {
-        $this->fastEnabled = $enabled;
+        $this->data['fast'] = $enabled;
 
         return $this;
     }
@@ -150,7 +125,7 @@ class SetState implements CreatesRequest
      */
     public function setPower(string $state): self
     {
-        $this->power = $state;
+        $this->data['power'] = $state;
 
         return $this;
     }
@@ -161,14 +136,7 @@ class SetState implements CreatesRequest
     public function toRequest(): Request
     {
         $uri = sprintf('%s/state', $this->selector);
-        $body = [];
 
-        $settings = ['color', 'brightness', 'power', 'infrared', 'fast', 'duration'];
-
-        foreach ($settings as $setting) {
-            $body[$setting] = (string) $this->$setting;
-        }
-
-        return new Request('PUT', $uri, [], http_build_query($body));
+        return new Request('PUT', $uri, [], json_encode($this->data));
     }
 }

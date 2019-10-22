@@ -1,5 +1,17 @@
 {
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.3",
+        "clue/multicast-react": "^1.0",
+        "illuminate/support": "^6.3"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "KSolo\\Lifx\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "KSolo\\Tests\\Lifx\\": "tests/" }
     }
 }

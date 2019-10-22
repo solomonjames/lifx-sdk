@@ -12,6 +12,7 @@ class Color
     private const SETTING_BRIGHTNESS = 'brightness';
     private const SETTING_SATURATION = 'saturation';
     private const SETTING_HUE = 'hue';
+    private const SETTING_KELVIN = 'kelvin';
     private const SETTING_NAME = 'name';
 
     /**
@@ -20,7 +21,7 @@ class Color
     private $colorSettings = [];
 
     /**
-     * @var KSolo\Lifx\Util\Validators
+     * @var \KSolo\Lifx\Util\Validators
      */
     private $validators;
 
@@ -67,7 +68,7 @@ class Color
      */
     public function setBrightness(float $level): self
     {
-        $this->validators->floatInRange($level, 1.0, 0.0);
+        $this->validators->floatInRange($level, 0.0, 1.0);
 
         $value = sprintf('%s:%s', self::SETTING_BRIGHTNESS, $level);
 
@@ -81,7 +82,7 @@ class Color
      */
     public function setSaturation(float $level): self
     {
-        $this->validators->floatInRange($level, 1.0, 0.0);
+        $this->validators->floatInRange($level, 0.0, 1.0);
 
         $value = sprintf('%s:%s', self::SETTING_SATURATION, $level);
 
@@ -113,9 +114,9 @@ class Color
     {
         $this->validators->intInRange($value, 1500, 9000);
 
-        $setting = sprintf('%s:%s', self::SETTING_HUE, $value);
+        $setting = sprintf('%s:%s', self::SETTING_KELVIN, $value);
 
-        return $this->appendSetting(self::SETTING_HUE, $setting);
+        return $this->appendSetting(self::SETTING_KELVIN, $setting);
     }
 
     /**
