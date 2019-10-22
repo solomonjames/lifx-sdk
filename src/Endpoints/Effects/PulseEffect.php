@@ -1,40 +1,13 @@
 <?php
 
-namespace KSolo\Lifx\Endpoints;
+namespace KSolo\Lifx\Endpoints\Effects;
 
 use GuzzleHttp\Psr7\Request;
 use KSolo\Lifx\Builders\Color;
-use KSolo\Lifx\Builders\Selector;
-use KSolo\Lifx\Util\Validators;
+use KSolo\Lifx\Endpoints\CreatesRequest;
 
-class BreathEffect implements CreatesRequest
+class PulseEffect extends Effect implements CreatesRequest
 {
-    /**
-     * @var \KSolo\Lifx\Builders\Selector
-     */
-    private $selector;
-
-    /**
-     * @var array
-     */
-    private $data = [];
-
-    /**
-     * @var \KSolo\Lifx\Util\Validators
-     */
-    private $validators;
-
-    /**
-     * ListLights constructor.
-     *
-     * @param \KSolo\Lifx\Builders\Selector|null $selector
-     */
-    public function __construct(Selector $selector = null)
-    {
-        $this->selector = $selector ?? Selector::all();
-        $this->validators = new Validators();
-    }
-
     /**
      * The color to use for the breathe effect.
      *
@@ -127,28 +100,10 @@ class BreathEffect implements CreatesRequest
     }
 
     /**
-     * Defines where in a period the target color is at its maximum. Minimum 0.0, maximum 1.0.
-     *
-     * @param float $peak Default: 0.5
-     *
-     * @return $this
-     */
-    public function setPeak(float $peak): self
-    {
-        $this->validators->floatInRange($peak, 0.0, 1.0);
-
-        $this->data['peak'] = $peak;
-
-        return $this;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function toRequest(): Request
     {
-        $uri = sprintf('%s/effects/breathe', $this->selector);
-
-        return new Request('POST', $uri, [], json_encode($this->data));
+        return $this->makeRequest('pulse');
     }
 }

@@ -24,7 +24,7 @@ class Selector
     }
 
     /**
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
     public function setAll(): self
     {
@@ -38,7 +38,7 @@ class Selector
      * @param bool   $pickRandom
      * @param string $zones
      *
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
     public function addLocationId(string $value, bool $pickRandom = false, string $zones = ''): self
     {
@@ -50,9 +50,9 @@ class Selector
      * @param bool   $pickRandom
      * @param string $zones
      *
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
-    public function addLocation(string $value, ?bool $pickRandom = false, string $zones = ''): self
+    public function addLocation(string $value, bool $pickRandom = false, string $zones = ''): self
     {
         return $this->addSelector('location', $value, $pickRandom, $zones);
     }
@@ -62,9 +62,9 @@ class Selector
      * @param bool   $pickRandom
      * @param string $zones
      *
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
-    public function addLabel(string $value, ?bool $pickRandom = false, string $zones = ''): self
+    public function addLabel(string $value, bool $pickRandom = false, string $zones = ''): self
     {
         return $this->addSelector('label', $value, $pickRandom, $zones);
     }
@@ -74,9 +74,9 @@ class Selector
      * @param bool   $pickRandom
      * @param string $zones
      *
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
-    public function addId(string $value, ?bool $pickRandom = false, string $zones = ''): self
+    public function addId(string $value, bool $pickRandom = false, string $zones = ''): self
     {
         return $this->addSelector('id', $value, $pickRandom, $zones);
     }
@@ -86,9 +86,9 @@ class Selector
      * @param bool   $pickRandom
      * @param string $zones
      *
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
-    public function addGroupId(string $value, ?bool $pickRandom = false, string $zones = ''): self
+    public function addGroupId(string $value, bool $pickRandom = false, string $zones = ''): self
     {
         return $this->addSelector('group_id', $value, $pickRandom, $zones);
     }
@@ -98,9 +98,9 @@ class Selector
      * @param bool   $pickRandom
      * @param string $zones
      *
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
-    public function addGroup(string $value, ?bool $pickRandom = false, string $zones = ''): self
+    public function addGroup(string $value, bool $pickRandom = false, string $zones = ''): self
     {
         return $this->addSelector('group', $value, $pickRandom, $zones);
     }
@@ -110,9 +110,9 @@ class Selector
      * @param bool   $pickRandom
      * @param string $zones
      *
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
-    public function addSceneId(string $value, ?bool $pickRandom = false, string $zones = ''): self
+    public function addSceneId(string $value, bool $pickRandom = false, string $zones = ''): self
     {
         return $this->addSelector('scene_id', $value, $pickRandom, $zones);
     }
@@ -123,7 +123,7 @@ class Selector
      * @param bool   $pickRandom
      * @param string $zones
      *
-     * @return \KSolo\Lifx\Selector
+     * @return \KSolo\Lifx\Builders\Selector
      */
     private function addSelector(string $key, string $value, bool $pickRandom, string $zones): self
     {
@@ -172,6 +172,6 @@ class Selector
      */
     public function __toString(): string
     {
-        return implode(',', $this->selectors);
+        return urlencode(implode(',', $this->selectors));
     }
 }
