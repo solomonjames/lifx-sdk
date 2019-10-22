@@ -3,14 +3,14 @@
 namespace KSolo\Lifx\Endpoints;
 
 use GuzzleHttp\Psr7\Request;
-use KSolo\Lifx\Color;
-use KSolo\Lifx\Selector;
+use KSolo\Lifx\Builders\Color;
+use KSolo\Lifx\Builders\Selector;
 use KSolo\Lifx\Util\Validators;
 
 class BreathEffect implements CreatesRequest
 {
     /**
-     * @var \KSolo\Lifx\Selector
+     * @var \KSolo\Lifx\Builders\Selector
      */
     private $selector;
 
@@ -27,7 +27,7 @@ class BreathEffect implements CreatesRequest
     /**
      * ListLights constructor.
      *
-     * @param \KSolo\Lifx\Selector|null $selector
+     * @param \KSolo\Lifx\Builders\Selector|null $selector
      */
     public function __construct(Selector $selector = null)
     {
@@ -38,7 +38,7 @@ class BreathEffect implements CreatesRequest
     /**
      * The color to use for the breathe effect.
      *
-     * @param \KSolo\Lifx\Color $color
+     * @param \KSolo\Lifx\Builders\Color $color
      *
      * @return $this
      */
@@ -53,7 +53,7 @@ class BreathEffect implements CreatesRequest
      * The color to start the effect from. If this parameter is omitted then the color
      *   the bulb is currently set to is used instead.
      *
-     * @param \KSolo\Lifx\Color $fromColor Default: current bulb color
+     * @param \KSolo\Lifx\Builders\Color $fromColor Default: current bulb color
      *
      * @return $this
      */

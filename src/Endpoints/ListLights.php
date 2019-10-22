@@ -3,19 +3,19 @@
 namespace KSolo\Lifx\Endpoints;
 
 use GuzzleHttp\Psr7\Request;
-use KSolo\Lifx\Selector;
+use KSolo\Lifx\Builders\Selector;
 
 class ListLights implements CreatesRequest
 {
     /**
-     * @var \KSolo\Lifx\Selector
+     * @var \KSolo\Lifx\Builders\Selector
      */
     private $selector;
 
     /**
      * ListLights constructor.
      *
-     * @param \KSolo\Lifx\Selector|null $selector
+     * @param \KSolo\Lifx\Builders\Selector|null $selector
      */
     public function __construct(Selector $selector = null)
     {

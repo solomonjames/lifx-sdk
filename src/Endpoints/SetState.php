@@ -3,14 +3,14 @@
 namespace KSolo\Lifx\Endpoints;
 
 use GuzzleHttp\Psr7\Request;
-use KSolo\Lifx\Color;
-use KSolo\Lifx\Selector;
+use KSolo\Lifx\Builders\Color;
+use KSolo\Lifx\Builders\Selector;
 use KSolo\Lifx\Util\Validators;
 
 class SetState implements CreatesRequest
 {
     /**
-     * @var \KSolo\Lifx\Selector
+     * @var \KSolo\Lifx\Builders\Selector
      */
     private $selector;
 
@@ -27,7 +27,7 @@ class SetState implements CreatesRequest
     /**
      * SetState constructor.
      *
-     * @param \KSolo\Lifx\Selector|null $selector
+     * @param \KSolo\Lifx\Builders\Selector|null $selector
      */
     public function __construct(Selector $selector = null)
     {
@@ -36,7 +36,7 @@ class SetState implements CreatesRequest
     }
 
     /**
-     * @param \KSolo\Lifx\Color $color
+     * @param \KSolo\Lifx\Builders\Color $color
      *
      * @return \KSolo\Lifx\Endpoints\SetState
      */

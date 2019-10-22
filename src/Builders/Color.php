@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace KSolo\Lifx;
+namespace KSolo\Lifx\Builders;
 
 use KSolo\Lifx\Util\Validators;
 
