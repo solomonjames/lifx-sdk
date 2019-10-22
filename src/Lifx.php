@@ -26,8 +26,9 @@ class Lifx
     /**
      * @param \KSolo\Lifx\Endpoints\CreatesRequest $request
      *
-     * @return \Illuminate\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return \Illuminate\Support\Collection
      */
     public function execute(CreatesRequest $request): Collection
     {

@@ -28,6 +28,7 @@ class FlameEffect extends Effect implements CreatesRequest
     public function setDuration(float $duration): self
     {
         $this->data['duration'] = $duration;
+
         return $this;
     }
 
@@ -44,6 +45,7 @@ class FlameEffect extends Effect implements CreatesRequest
     public function setPeriod(float $period): self
     {
         $this->data['period'] = $period;
+
         return $this;
     }
 
@@ -57,6 +59,7 @@ class FlameEffect extends Effect implements CreatesRequest
     public function setPowerOn(bool $turnPowerOn): self
     {
         $this->data['power_on'] = $turnPowerOn;
+
         return $this;
     }
 

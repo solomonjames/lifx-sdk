@@ -29,8 +29,9 @@ class Client
     /**
      * @param \KSolo\Lifx\Endpoints\CreatesRequest $createsRequest
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return mixed|\Psr\Http\Message\ResponseInterface
      */
     public function send(CreatesRequest $createsRequest)
     {
@@ -40,8 +41,9 @@ class Client
     /**
      * @param \GuzzleHttp\Psr7\Request $request
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return mixed|\Psr\Http\Message\ResponseInterface
      */
     public function sendRequest(Request $request)
     {

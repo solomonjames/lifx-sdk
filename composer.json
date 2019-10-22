@@ -1,4 +1,7 @@
 {
+    "name": "ksolo/lifx-sdk",
+    "type": "library",
+    "description": "Wrapper for the LIFX lights API",
     "require": {
         "ext-json": "*",
         "guzzlehttp/guzzle": "^6.3",
@@ -6,12 +9,23 @@
         "illuminate/support": "^6.3"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "phpmd/phpmd": "^2.7",
+        "friendsofphp/php-cs-fixer": "^2.15"
     },
     "autoload": {
         "psr-4": { "KSolo\\Lifx\\": "src/" }
     },
     "autoload-dev": {
         "psr-4": { "KSolo\\Tests\\Lifx\\": "tests/" }
+    },
+    "scripts": {
+        "build": ["@lint", "@cs", "@test", "@phpstan", "@phpmd"],
+        "test": "phpunit",
+        "cs": "./vendor/bin/php-cs-fixer fix src/ --dry-run",
+        "cs:fix": "./vendor/bin/php-cs-fixer fix src/",
+        "lint": "./scripts/php-lint.sh src/",
+        "phpstan": "phpstan analyse --level 7 src/",
+        "phpmd": "phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode"
     }
 }

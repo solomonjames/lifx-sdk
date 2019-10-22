@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace KSolo\Lifx\Builders;
@@ -18,7 +19,7 @@ class Selector
     /**
      * Static factory for selecting all lights
      */
-    public static function all(): Selector
+    public static function all(): self
     {
         return (new self())->setAll();
     }
