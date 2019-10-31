@@ -4,7 +4,7 @@ namespace KSolo\Lifx\Endpoints;
 
 use GuzzleHttp\Psr7\Request;
 use KSolo\Lifx\Builders\Selector;
-use KSolo\Lifx\Color;
+use KSolo\Lifx\Light;
 
 class ListLights implements CreatesRequest, HydratesResults
 {
@@ -38,6 +38,6 @@ class ListLights implements CreatesRequest, HydratesResults
      */
     public function hydrator(): string
     {
-        return Color::class;
+        return Light::class;
     }
 }
